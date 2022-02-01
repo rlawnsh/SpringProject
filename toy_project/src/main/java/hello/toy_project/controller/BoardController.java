@@ -4,6 +4,10 @@ import hello.toy_project.entity.Board;
 import hello.toy_project.repository.BoardRepository;
 import hello.toy_project.validator.BoardValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +25,14 @@ public class BoardController {
     private final BoardValidator boardValidator;
 
     @GetMapping("/list")
-    public String list(Model model) {
-        List<Board> findBoards = boardRepository.findAll();
+    public String list(Model model, @PageableDefault(size = 5) Pageable pageable,
+                       @RequestParam(required = false, defaultValue = "") String searchText) {
+//        Page<Board> findBoards = boardRepository.findAll(pageable);
+        Page<Board> findBoards = boardRepository.findByTitleContainingOrContentContaining(searchText, searchText, pageable);
+        int startPage = 1;
+        int totalPages = findBoards.getTotalPages();
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("totalPages", totalPages);
         model.addAttribute("findBoards", findBoards);
         return "board/list";
     }

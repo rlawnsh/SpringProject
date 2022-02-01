@@ -35,7 +35,18 @@
 
 <div class="container">
     <h2>게시판</h2>
-    <div>총 건수 : <span th:text="${#lists.size(findBoards)}"></span></div>
+<!--    TODO thymeleaf 에서는 findfindBoards.getTotalElements 메소드는 totalElements 로 바꾸면 알아서 thymeleaf 가 가져온다.-->
+    <div>총 건수 : <span th:text="${findBoards.totalElements}"></span></div>
+
+    <form class="row g-3 d-flex justify-content-end" method="GET" th:action="@{/board/list}">
+        <div class="col-auto">
+<!--            <label for="searchText" class="visually-hidden">검색</label>-->
+            <input type="text" class="form-control" id="searchText" name="searchText" th:value="${param.searchText}">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-light mb-3">검색</button>
+        </div>
+    </form>
 
     <table class="table">
         <thead>
@@ -53,6 +64,20 @@
         </tr>
         </tbody>
     </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${findBoards.pageable.pageNumber + 1 == 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/board/list(page=${findBoards.pageable.pageNumber - 1}, searchText = ${param.searchText})}">Previous</a>
+            </li>
+<!--            TODO findBoards.pageable.pageNumber 0부터 시작하므로 +1 처리 -->
+            <li class="page-item" th:classappend="${i == findBoards.pageable.pageNumber + 1} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, totalPages)}">
+                <a class="page-link" href="#" th:href="@{/board/list(page=${i - 1}, searchText = ${param.searchText})}" th:text="${i}">1</a></li>
+            <li class="page-item" th:classappend="${findBoards.totalPages == findBoards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/board/list/(page=${findBoards.pageable.pageNumber + 1}, searchText = ${param.searchText})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="text-right">
         <a type="button" class="btn btn-outline-primary" th:href="@{/board/form}">쓰기</a>
