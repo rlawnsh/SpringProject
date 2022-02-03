@@ -35,7 +35,7 @@
 
 <div class="container">
     <h2>게시판</h2>
-<!--    TODO thymeleaf 에서는 findfindBoards.getTotalElements 메소드는 totalElements 로 바꾸면 알아서 thymeleaf 가 가져온다.-->
+<!--    TODO thymeleaf 에서는 findBoards.getTotalElements 메소드는 findBoards.totalElements 로 바꾸면 알아서 thymeleaf 가 가져온다.-->
     <div>총 건수 : <span th:text="${findBoards.totalElements}"></span></div>
 
     <form class="row g-3 d-flex justify-content-end" method="GET" th:action="@{/board/list}">
@@ -74,7 +74,7 @@
             <li class="page-item" th:classappend="${i == findBoards.pageable.pageNumber + 1} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, totalPages)}">
                 <a class="page-link" href="#" th:href="@{/board/list(page=${i - 1}, searchText = ${param.searchText})}" th:text="${i}">1</a></li>
             <li class="page-item" th:classappend="${findBoards.totalPages == findBoards.pageable.pageNumber + 1} ? 'disabled'">
-                <a class="page-link" href="#" th:href="@{/board/list/(page=${findBoards.pageable.pageNumber + 1}, searchText = ${param.searchText})}">Next</a>
+                <a class="page-link" href="#" th:href="@{/board/list(page=${findBoards.pageable.pageNumber + 1}, searchText = ${param.searchText})}">Next</a>
             </li>
         </ul>
     </nav>
