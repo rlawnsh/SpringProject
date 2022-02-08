@@ -20,7 +20,9 @@ public class UserApiController {
     // tag::get-aggregate-root[]
     @GetMapping("/users")
     List<User> all() {
-        return userRepository.findAll();
+
+        List<User> users = userRepository.findAll();
+        return users;
     }
     // end::get-aggregate-root[]
 
