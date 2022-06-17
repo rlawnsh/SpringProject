@@ -10,11 +10,11 @@
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
 
-    <title th:text="${title}">Hello, Spring Boot!</title>
+    <title th:text="${title}">BLUE CHIP</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:fragment="menu(menu)">
-    <a class="navbar-brand" href="#">Spring Boot Tutorial</a>
+<nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #e3f2fd;" th:fragment="menu(menu)">
+    <a class="navbar-brand" style="color: deepskyblue" href="/">BLUE CHIP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,6 +30,12 @@
             </li>
             <li class="nav-item" th:classappend="${menu} == 'kospi'? 'active'">
                 <a class="nav-link" href="#" th:href="@{/kospi/all}">시장 <span class="sr-only" th:if="${menu} == 'kospi'">(current)</span></a>
+            </li>
+            <li class="nav-item" th:classappend="${menu} == 'news'? 'active'">
+                <a class="nav-link" href="#" th:href="@{/news/all}">뉴스 <span class="sr-only" th:if="${menu} == 'news'">(current)</span></a>
+            </li>
+            <li class="nav-item" th:classappend="${menu} == 'info'? 'active'">
+                <a class="nav-link" href="#" th:href="@{/info}">정보 <span class="sr-only" th:if="${menu} == 'info'">(current)</span></a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -51,11 +57,19 @@
            sec:authorize="!isAuthenticated()">SIGN-IN</a>
         <form class="form-inline my-2 my-lg-0" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
             <!--            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
-            <span class="text-white" sec:authentication="name">사용자</span>
-            <span class="text-white mx-2" sec:authentication="principal.authorities">권환</span>
-            <button type="submit" class="btn btn-outline-danger">LOGOUT</button>
+            <span class="text-black" sec:authentication="name">사용자</span>
+<!--            <span class="text-white mx-2" sec:authentication="principal.authorities">권환</span>-->
+            <button type="submit" class="btn btn-outline-danger"> LOGOUT</button>
         </form>
     </div>
 </nav>
 </body>
+<footer th:fragment="footer(title)">
+    <div class="p-3 mb-2 bg-secondary text-white">
+        <h1>BLUE CHIP</h1>
+        <p>16499 경기도 수원시 영통구 월드컵로 206 아주대학교</p>
+        <p>031-219-2114</p>
+        <address>Contact: wnshrla@ajou.ac.kr</address>
+    </div>
+</footer>
 </html>

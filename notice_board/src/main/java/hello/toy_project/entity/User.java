@@ -32,5 +32,11 @@ public class User {
     @JsonIgnore
     private List<Board> boards = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Likes> likesList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Dislikes> dislikesList;
+
 
 }

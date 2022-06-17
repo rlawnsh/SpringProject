@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import hello.toy_project.controller.dto.KospiStockDto;
+import hello.toy_project.controller.dto.StockNewsDto;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -60,5 +61,28 @@ public class JsoupComponent {
             }
         }
         return kospiStockDto;
+    }
+
+    public List<StockNewsDto> getStockNewsList() {
+        final String newsList = "https://finance.naver.com/news/news_list.naver?mode=LSS3D&section_id=101&section_id2=258&section_id3=401";
+        Connection conn = Jsoup.connect(newsList);
+        try {
+            Document document = conn.get();
+            return getStockNewsList(document);
+        } catch (IOException e) {
+        }
+        return null;
+    }
+
+    private List<StockNewsDto> getStockNewsList(Document document) {
+        List<StockNewsDto> stockNewsDtos = new ArrayList<>();
+        Elements articleSubject = document.select("dd.articleSubject");
+        for (int i = 0; i < articleSubject.size(); i++) {
+            StockNewsDto stockNewsDto = new StockNewsDto();
+            stockNewsDto.setArticleUrl("https://finance.naver.com" + articleSubject.select("a").get(i).attr("href"));
+            stockNewsDto.setArticleSubject(articleSubject.select("a").get(i).attr("title"));
+            stockNewsDtos.add(stockNewsDto);
+        }
+        return stockNewsDtos;
     }
 }
