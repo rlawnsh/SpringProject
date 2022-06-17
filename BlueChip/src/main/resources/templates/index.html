@@ -1,0 +1,100 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head th:replace="fragments/common :: head('Hello, BLUE CHIP!')">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="starter-template.css" rel="stylesheet">
+
+    <title>Hello, Spring Boot!</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('home')">
+
+</nav>
+
+<main role="main" class="container">
+
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a th:href="@{/info}">
+                    <img th:src="@{/images/bluechip1.jpg}" class="d-block w-100" alt="stock">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a th:href="@{/info}">
+                    <img th:src="@{/images/bluechip2.png}" class="d-block w-100" alt="stock">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a th:href="@{/info}">
+                    <img th:src="@{/images/bluechip3.jpg}" class="d-block w-100" alt="stock">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a th:href="@{/info}">
+                    <img th:src="@{/images/bluechip4.jpg}" class="d-block w-100" alt="stock">
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" type="button" href="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" type="button" href="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-bs-slide-to="0" class="active"></li> <!--0번부터시작-->
+            <li data-target="#demo" data-bs-slide-to="1"></li>
+            <li data-target="#demo" data-bs-slide-to="2"></li>
+            <li data-target="#demo" data-bs-slide-to="3"></li>
+        </ul>
+    </div>
+    <a th:href="@{https://comp.wisereport.co.kr/company/c1030001.aspx?cn=&cmp_cd=005930}" target="_blank">
+        <img th:src="@{/images/samsung.jpg}" class="text-start" alt="samsung">
+    </a>
+    <a th:href="@{https://comp.wisereport.co.kr/company/c1030001.aspx?cn=&cmp_cd=373220}" target="_blank">
+        <img th:src="@{/images/lg.jpg}" class="text-center" alt="lg">
+    </a>
+    <a th:href="@{https://comp.wisereport.co.kr/company/c1030001.aspx?cn=&cmp_cd=000660}" target="_blank">
+        <img th:src="@{/images/sk.jpg}" class="text-center" alt="sk">
+    </a>
+    <a th:href="@{https://comp.wisereport.co.kr/company/c1030001.aspx?cn=&cmp_cd=051910}" target="_blank">
+        <img th:src="@{/images/lgchemi.jpg}" class="text-center" alt="lgchemi">
+    </a>
+    <a th:href="@{https://comp.wisereport.co.kr/company/c1030001.aspx?cn=&cmp_cd=035420}" target="_blank">
+        <img th:src="@{/images/naver.png}" class="text-end" alt="naver">
+    </a>
+
+
+</main>
+
+<footer th:replace="fragments/common :: footer('footer')"></footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //기본 5초
+    })
+</script>
+</body>
+
+</html>
